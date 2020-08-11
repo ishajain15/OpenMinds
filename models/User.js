@@ -19,6 +19,13 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
+    },    
+    
+    confirmed: {
+        type: Boolean,
+        //commenting out line below for the time being
+        //required: true,
+        default: false
     }
 });
 
