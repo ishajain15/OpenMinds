@@ -5,13 +5,14 @@ const bcrypt = require("bcrypt");
 const session = require("express-session");
 const flash = require("express-flash");
 const passport = require("passport");
-
 const initializePassport = require("./passportConfig");
+const expressLayouts = require("express-ejs-layouts");
 
 initializePassport(passport);
 
 const PORT = process.env.PORT || 4000;
 
+app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
@@ -64,7 +65,7 @@ app.post("/users/register", async (req, res) => {
   let errors = [];
 
   if (!name || !email || !password || !password2) {
-    errors.push({ message: "Please enter all fients" });
+    errors.push({ message: "Please enter all fields" });
   }
 
   if (password.length < 6) {
