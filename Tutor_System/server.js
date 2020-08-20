@@ -77,7 +77,7 @@ app.post("/users/register", async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", { errors });
+    res.render("register", { errors, name, email, password, password2 });
   } else {
     // form validation has passed
 
