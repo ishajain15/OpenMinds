@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <a href="/users/logout">Logout</a>
-    <h1>Hello <%= user.charAt(0).toUpperCase() + user.slice(1) %></h1>
+    <h1 class="mt-4">Dashboard</h1>
+    <p class="lead mb-3">
+      Welcome <%= user.charAt(0).toUpperCase() + user.slice(1) %>
+    </p>
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
   </body>
 </html>
