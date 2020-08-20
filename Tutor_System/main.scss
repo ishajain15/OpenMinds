@@ -1,0 +1,7 @@
+$theme-colors: (
+  "primary": #455879,
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "_bootswatch";
+@import "_variables";
