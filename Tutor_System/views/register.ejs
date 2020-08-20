@@ -3,18 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Document</title>
   </head>
   <body>
     <h1>Register</h1>
 
-    <ul>
-      <% if (typeof errors != 'undefined') { %> <% errors.forEach(error => { %>
-      <li><%= error.message %></li>
-      <% }) %> <% } %>
-    </ul>
-
+    <%- include ('partials/messages') %>
     <form action="/users/register" method="POST">
       <div>
         <input type="text" id="name" name="name" placeholder="Name" required />
@@ -52,7 +45,9 @@
       <div>
         <input type="submit" value="Register" />
       </div>
-      <a href="/users/login">Already registered? Login here</a>
+      <p class="lead mt-4">
+        Have An Account? <a href="/users/login">Login here</a>
+      </p>
     </form>
   </body>
 </html>
