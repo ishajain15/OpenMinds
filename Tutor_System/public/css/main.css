@@ -1,11 +1,4 @@
 /*!
- * Bootswatch v4.5.2
- * Homepage: https://bootswatch.com
- * Copyright 2012-2020 Thomas Park
- * Licensed under MIT
- * Based on Bootstrap
-*/
-/*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
  * Copyright 2011-2020 Twitter, Inc.
@@ -187,7 +180,7 @@ a {
 }
 
 a:hover {
-  color:#6c82a6;
+  color: #6c82a6;
   text-decoration: underline;
 }
 
