@@ -5398,7 +5398,7 @@ input[type="button"].btn-block {
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(223, 215, 202, 0.75);
+  border: 1px solid rgba(204, 212, 220, 0.75);
   border-radius: 0.25rem;
 }
 
@@ -5462,7 +5462,7 @@ input[type="button"].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(248, 245, 240, 0.25);
-  border-bottom: 1px solid rgba(223, 215, 202, 0.75);
+  border-bottom: 1px solid rgba(204, 212, 220, 0.75);
 }
 
 .card-header:first-child {
@@ -5472,7 +5472,7 @@ input[type="button"].btn-block {
 .card-footer {
   padding: 0.75rem 1.25rem;
   background-color: rgba(248, 245, 240, 0.25);
-  border-top: 1px solid rgba(223, 215, 202, 0.75);
+  border-top: 1px solid rgba(204, 212, 220, 0.75);
 }
 
 .card-footer:last-child {
