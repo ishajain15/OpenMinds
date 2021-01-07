@@ -48,6 +48,10 @@ app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
   res.render("dashboard", { user: req.user.firstname });
 });
 
+app.get("/users/admin", checkNotAuthenticated, (req, res) => {
+  res.render("admin");
+});
+
 app.get("/users/logout", (req, res) => {
   req.logOut();
   req.flash("success_msg", "You have logged out");
@@ -124,15 +128,25 @@ app.post("/users/register", async (req, res) => {
 app.post(
   "/users/login",
   passport.authenticate("local", {
-    successRedirect: "/users/dashboard",
     failureRedirect: "/users/login",
-    failureFlash: true,
-  })
-);
+    failureFlash: true}),
+    (req, res) => {
+      if (req.user.isadmin === true) {
+        res.redirect("/users/admin");
+      }
+      if (req.user.isadmin === false) {
+        res.redirect("/users/dashboard");
+      }
+  });
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
-    return res.redirect("/users/dashboard");
+    if (req.user.isadmin === true) {
+      return res.redirect("/users/admin");
+    }
+    if (req.user.isadmin === false) {
+      return res.redirect("/users/dashboard");
+    }
   }
 
   next();
