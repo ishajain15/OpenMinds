@@ -5,25 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div class="row mt-5">
+    <div class="row mt-4">
       <div class="col-md-6 m-auto">
         <div class="card card-body">
-          <h1 class="text-center mb-3">
+          <h1 class="text-center mb-2">
             Register
           </h1>
           <%- include ('partials/messages') %>
+          
           <form action="/users/register" method="POST">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="firstname">First Name</label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="firstname"
+                name="firstname"
                 class="form-control"
-                placeholder="Enter Name"
-                value="<%= typeof name != 'undefined' ? name : '' %>"
+                placeholder="Enter First Name"
+                value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
               />
             </div>
+
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input
+                type="text"
+                id="lastname"
+                name="lastname"
+                class="form-control"
+                placeholder="Enter Last Name"
+                value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
+              />
+            </div>
+
             <div class="form-group">
               <label for="email">Email</label>
               <input
@@ -35,6 +49,7 @@
                 value="<%= typeof email != 'undefined' ? email : '' %>"
               />
             </div>
+
             <div class="form-group">
               <label for="password">Password</label>
               <input
@@ -67,5 +82,6 @@
         </div>
       </div>
     </div>
+    <div class="row mt-4"></div>
   </body>
 </html>

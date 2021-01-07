@@ -45,7 +45,7 @@ app.get("/users/login", checkAuthenticated, (req, res) => {
 });
 
 app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
-  res.render("dashboard", { user: req.user.name });
+  res.render("dashboard", { user: req.user.firstname });
 });
 
 app.get("/users/logout", (req, res) => {
@@ -55,10 +55,11 @@ app.get("/users/logout", (req, res) => {
 });
 
 app.post("/users/register", async (req, res) => {
-  let { name, email, password, password2 } = req.body;
+  let { firstname, lastname, email, password, password2 } = req.body;
 
   console.log({
-    name,
+    firstname,
+    lastname,
     email,
     password,
     password2,
@@ -66,7 +67,7 @@ app.post("/users/register", async (req, res) => {
 
   let errors = [];
 
-  if (!name || !email || !password || !password2) {
+  if (!firstname || !lastname || !email || !password || !password2) {
     errors.push({ message: "Please enter all fields" });
   }
 
@@ -79,7 +80,7 @@ app.post("/users/register", async (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", { errors, name, email, password, password2 });
+    res.render("register", { errors, firstname, lastname, email, password, password2 });
   } else {
     // form validation has passed
 
@@ -101,10 +102,10 @@ app.post("/users/register", async (req, res) => {
           res.render("register", { errors });
         } else {
           pool.query(
-            `INSERT INTO users (name, email, password)
-            VALUES ($1, $2, $3)
+            `INSERT INTO users (firstname, lastname, email, password)
+            VALUES ($1, $2, $3, $4)
             RETURNING id, password`,
-            [name, email, hashedPassword],
+            [firstname, lastname, email, hashedPassword],
             (err, results) => {
               if (err) {
                 throw err;
