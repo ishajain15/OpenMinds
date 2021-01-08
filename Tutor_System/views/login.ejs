@@ -11,7 +11,7 @@
         <h1 class="text-center mb-2">Login</h1>
         <%- include ('partials/messages') %>
         
-        <form action="/users/login" method="POST">
+        <form action="/login" method="POST">
           <div class="form-group">
             <label for="email">Email</label>
             <input
@@ -37,7 +37,7 @@
           <button type="submit" value="Login" class="btn btn-primary btn-block">Login</button>
         </form>
         <p class="lead mt-4">
-          No Account? <a href="/users/register">Register</a>
+          No Account? <a href="/register">Register</a>
         </p>
       </div>
     </div>

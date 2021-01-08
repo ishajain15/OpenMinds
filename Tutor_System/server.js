@@ -36,29 +36,29 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/users/register", checkAuthenticated, (req, res) => {
+app.get("/register", checkAuthenticated, (req, res) => {
   res.render("register");
 });
 
-app.get("/users/login", checkAuthenticated, (req, res) => {
+app.get("/login", checkAuthenticated, (req, res) => {
   res.render("login");
 });
 
-app.get("/users/dashboard", checkNotAuthenticated, (req, res) => {
+app.get("/dashboard", checkNotAuthenticated, (req, res) => {
   res.render("dashboard", { user: req.user.firstname });
 });
 
-app.get("/users/admin", checkNotAuthenticated, (req, res) => {
+app.get("/admin", checkNotAuthenticated, (req, res) => {
   res.render("admin");
 });
 
-app.get("/users/logout", (req, res) => {
+app.get("/logout", (req, res) => {
   req.logOut();
   req.flash("success_msg", "You have logged out");
-  res.redirect("/users/login");
+  res.redirect("/login");
 });
 
-app.post("/users/register", async (req, res) => {
+app.post("/register", async (req, res) => {
   let { firstname, lastname, email, password, password2 } = req.body;
 
   console.log({
@@ -116,7 +116,7 @@ app.post("/users/register", async (req, res) => {
               }
               console.log(results.rows);
               req.flash("success_msg", "You are now registered. Please log in");
-              res.redirect("/users/login");
+              res.redirect("/login");
             }
           );
         }
@@ -126,26 +126,26 @@ app.post("/users/register", async (req, res) => {
 });
 
 app.post(
-  "/users/login",
+  "/login",
   passport.authenticate("local", {
-    failureRedirect: "/users/login",
+    failureRedirect: "/login",
     failureFlash: true}),
     (req, res) => {
       if (req.user.isadmin === true) {
-        res.redirect("/users/admin");
+        res.redirect("/admin");
       }
       if (req.user.isadmin === false) {
-        res.redirect("/users/dashboard");
+        res.redirect("/dashboard");
       }
   });
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     if (req.user.isadmin === true) {
-      return res.redirect("/users/admin");
+      return res.redirect("/admin");
     }
     if (req.user.isadmin === false) {
-      return res.redirect("/users/dashboard");
+      return res.redirect("/dashboard");
     }
   }
 
@@ -157,7 +157,7 @@ function checkNotAuthenticated(req, res, next) {
     return next();
   }
 
-  res.redirect("/users/login");
+  res.redirect("/login");
 }
 
 app.listen(PORT, () => {
